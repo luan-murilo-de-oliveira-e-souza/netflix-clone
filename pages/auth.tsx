@@ -1,8 +1,13 @@
 import axios from 'axios';
 import { useCallback, useState } from "react";
 import Input from "@/components/input"
+//SignIn to use on Login
+import {signIn} from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const Auth = () => {
+    const router = useRouter();
+    
     // variable with state value = '' , email with value = '' , setEmail update the value of email
     const[email,setEmail] = useState('');
     const[name,setName] = useState('');
@@ -17,6 +22,23 @@ const Auth = () => {
     },[]);
 
     //Create authentication
+    //create login action
+    const login = useCallback(async() =>{
+        try{
+            await signIn('credentials',{
+                //give values to credentials
+                email,
+                password,
+                redirect: false,
+                callbackUrl: '/'
+            });
+
+            router.push('/');
+        } catch (error){
+            console.log(error);
+        }
+    },[email,password,router])
+
     //Create register
     const register = useCallback(async() => {
         try{
@@ -25,11 +47,15 @@ const Auth = () => {
                 name,
                 password
             });
+
+            login();
         } catch (error) {
             console.log(error);
         }
         //fill email, name, password because we need to be sync
-    },[email, name, password]);
+    },[email, name, password,login]);
+
+
 
     return (
         // add image to background
@@ -74,7 +100,7 @@ const Auth = () => {
                                 value={password}
                             />
                         </div>
-                        <button onClick={register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+                        <button onClick={variant === 'login' ? login: register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
                             {/* Change the text on button */}
                             {variant === 'login' ? 'Login' : 'Sign up'}
                         </button>
