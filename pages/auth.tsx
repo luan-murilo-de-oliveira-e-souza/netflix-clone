@@ -111,6 +111,8 @@ const Auth = () => {
                         <div className='flex flex-row items-center gap-4 mt-8 justify-center'>
                             {/* style of button Google and Github */}
                             <div
+                                //show the user who accessed by google in users table in mongodb
+                                onClick={()=>signIn('google',{callbackUrl: '/'})}
                                 className='
                                 w-10
                                 h-10
