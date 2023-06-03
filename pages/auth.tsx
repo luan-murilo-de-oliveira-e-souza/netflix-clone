@@ -28,7 +28,8 @@ const Auth = () => {
         } catch (error) {
             console.log(error);
         }
-    },[]);
+        //fill email, name, password because we need to be sync
+    },[email, name, password]);
 
     return (
         // add image to background
@@ -73,7 +74,7 @@ const Auth = () => {
                                 value={password}
                             />
                         </div>
-                        <button className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+                        <button onClick={register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
                             {/* Change the text on button */}
                             {variant === 'login' ? 'Login' : 'Sign up'}
                         </button>
