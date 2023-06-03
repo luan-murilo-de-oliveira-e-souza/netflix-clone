@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { useCallback, useState } from "react";
-import Input from "@/components/Input"
+import Input from "@/components/input"
 
 const Auth = () => {
     // variable with state value = '' , email with value = '' , setEmail update the value of email
@@ -13,7 +14,21 @@ const Auth = () => {
         // if currentVariant === login toggle to register if not leave it as login
         setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login');
         // [] below means add dependence
-    },[])
+    },[]);
+
+    //Create authentication
+    //Create register
+    const register = useCallback(async() => {
+        try{
+            await axios.post('/api/register',{
+                email,
+                name,
+                password
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    },[]);
 
     return (
         // add image to background
