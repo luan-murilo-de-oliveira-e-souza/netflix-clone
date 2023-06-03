@@ -127,6 +127,8 @@ const Auth = () => {
                                 <FcGoogle size={30} />
                             </div>
                             <div
+                                //show the user who accessed by github in users table in mongodb
+                                onClick={()=>signIn('github',{callbackUrl: '/'})}
                                 className='
                                 w-10
                                 h-10
