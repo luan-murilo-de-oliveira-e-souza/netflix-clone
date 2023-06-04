@@ -3,14 +3,14 @@ import { useCallback, useState } from "react";
 import Input from "@/components/input"
 //SignIn to use on Login
 import {signIn} from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'; //MAYBE I NEED TO DELETE IT
 
 //to add icons google and github
 import {FcGoogle} from 'react-icons/fc';
 import {FaGithub} from 'react-icons/fa';
 
 const Auth = () => {
-    const router = useRouter();
+    const router = useRouter(); //MAYBE I NEED TO DELETE IT
     
     // variable with state value = '' , email with value = '' , setEmail update the value of email
     const[email,setEmail] = useState('');
@@ -33,15 +33,15 @@ const Auth = () => {
                 //give values to credentials
                 email,
                 password,
-                redirect: false,
-                callbackUrl: '/'
+                redirect: false, //MAYBE I NEED TO DELETE IT
+                callbackUrl: '/' //MAYBE I NEED TO CHANGE / TO /profiles
             });
 
-            router.push('/');
+            router.push('/profiles'); //MAYBE I NEED TO DELETE IT
         } catch (error){
             console.log(error);
         }
-    },[email,password,router])
+    },[email,password,router]) //MAYBE I NEED TO TAKE OFF ROUTER
 
     //Create register
     const register = useCallback(async() => {
@@ -112,7 +112,7 @@ const Auth = () => {
                             {/* style of button Google and Github */}
                             <div
                                 //show the user who accessed by google in users table in mongodb
-                                onClick={()=>signIn('google',{callbackUrl: '/'})}
+                                onClick={()=>signIn('google',{callbackUrl: '/profiles'})}
                                 className='
                                 w-10
                                 h-10
@@ -130,7 +130,7 @@ const Auth = () => {
                             </div>
                             <div
                                 //show the user who accessed by github in users table in mongodb
-                                onClick={()=>signIn('github',{callbackUrl: '/'})}
+                                onClick={()=>signIn('github',{callbackUrl: '/profiles'})}
                                 className='
                                 w-10
                                 h-10
