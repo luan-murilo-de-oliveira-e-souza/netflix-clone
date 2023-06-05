@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import {getSession, signOut} from 'next-auth/react'
 
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/Navbar';
 
 //protect home route
 export async function getServerSideProps(context: NextPageContext){
