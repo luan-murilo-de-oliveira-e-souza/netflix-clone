@@ -30,6 +30,9 @@ export default function Home() {
     <>
       <Navbar />
       <Billboard />
+      {/* <div>
+        <MovieList />
+      </div> */}
     </>
   )
 }
