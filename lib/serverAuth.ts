@@ -1,11 +1,11 @@
-import { NextApiRequest } from "next";
-import { getSession} from 'next-auth/react';
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
 
 import prismadb from '@/lib/prismadb';
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-const serverAuth = async (req: NextApiRequest) => {
-        
-    const session = await getSession ({req}) //object that accept our request
+const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
+    const session = await getServerSession(req, res, authOptions); //object that accept our request
 
     //check if the session, user, email exist
     if (!session?.user?.email){

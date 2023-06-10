@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
         //check if you are logged in
-        await serverAuth(req);
+        await serverAuth(req, res);
 
         //count how many movies
         const movieCount = await prismadb.movie.count();
